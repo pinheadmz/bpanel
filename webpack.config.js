@@ -45,6 +45,7 @@ module.exports = function(env = {}) {
   }
 
   return {
+    context: __dirname,
     entry: ['whatwg-fetch', './webapp/index'],
     node: { __dirname: true },
     target: 'web',
@@ -111,8 +112,11 @@ module.exports = function(env = {}) {
       new ExtractTextPlugin('[name].css'),
       new WebpackShellPlugin({
         onBuildStart: {
-          scripts: ['npm run -s build:plugins'],
-          blocking: true
+          scripts: [
+            'node '+path.resolve(__dirname, 'server/clear-plugins'),
+            'node '+path.resolve(__dirname, 'server/build-plugins')
+          ],
+          blocking: true,
         }
       }),
       new webpack.DefinePlugin({

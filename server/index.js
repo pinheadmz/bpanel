@@ -5,7 +5,8 @@
 // --dev Watch server and webapp
 
 let poll = false;
-const webpackArgs = [];
+const path = require('path');
+const webpackArgs = ['--config', path.resolve(__dirname, '../webpack.config.js')];
 
 // If run from command line, parse args
 if (require.main === module) {
