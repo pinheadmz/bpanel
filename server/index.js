@@ -97,7 +97,7 @@ module.exports = config => {
 
     // Setup app server
     app.use(
-      express.static('dist', {
+      express.static(path.resolve(__dirname, 'dist'), {
         setHeaders: function(res, path) {
           if (path.endsWith('/main.bundle.js.gz')) {
             res.setHeader('Content-Encoding', 'gzip');
