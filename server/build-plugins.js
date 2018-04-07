@@ -41,6 +41,12 @@ const prepareModules = (plugins = [], local = true) => {
   if (installPackages.length) {
     try {
       logger.info('Installing plugin packages...');
+      //HACK: makes requirable work
+      execSync('npm install', {
+          stdio: [0, 1, 2],
+          cwd: resolve(__dirname, '..')
+        }
+      );
       execSync(
         `npm install --no-save ${installPackages.join(' ')} --production`,
         {
