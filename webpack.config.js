@@ -71,7 +71,7 @@ module.exports = function(env = {}) {
       loaders: [
         {
           test: /\.jsx?$/,
-          exclude: /node_modules/,
+          exclude: path.resolve(__dirname, 'node_modules'),
           loader: 'babel-loader',
           query: {
             presets: ['env', 'react', 'stage-3'],
